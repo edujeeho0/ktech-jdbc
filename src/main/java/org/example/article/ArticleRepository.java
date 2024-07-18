@@ -79,4 +79,13 @@ public class ArticleRepository {
     }
 
     // 4. Article 삭제
+    public boolean delete(Long id) {
+        String deleteSql = "DELETE FROM article WHERE id = ?;";
+        try (PreparedStatement statement = connection.prepareStatement(deleteSql)) {
+            statement.setLong(1, id);
+           return statement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

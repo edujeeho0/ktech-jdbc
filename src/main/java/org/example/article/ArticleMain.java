@@ -12,6 +12,7 @@ public class ArticleMain {
             System.out.println("1. 작성하기");
             System.out.println("2. 전체 조회하기");
             System.out.println("3. 게시글 읽기");
+            System.out.println("4. 게시글 삭제하기");
             System.out.println("q. 종료");
             String input = scanner.nextLine();
             if (input.equals("q")) break;
@@ -19,6 +20,7 @@ public class ArticleMain {
                 case 1 -> service.createArticle();
                 case 2 -> service.readAllArticles();
                 case 3 -> service.readArticle();
+                case 4 -> service.deleteArticle();
             }
             System.out.println();
         }

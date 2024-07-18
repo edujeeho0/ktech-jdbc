@@ -58,5 +58,20 @@ public class ArticleService {
             System.out.println("잘못된 입력입니다.");
         }
     }
+
     // 4. Article 삭제하기
+    public void deleteArticle() {
+        System.out.print("게시물 번호를 입력하세요: ");
+        String input = scanner.nextLine();
+        try {
+            Long id = Long.parseLong(input);
+            if (repository.delete(id)) {
+                System.out.println("삭제되었습니다.");
+            } else {
+                System.out.println("게시물을 찾을 수 없습니다.");
+            }
+        } catch (NumberFormatException ignored) {
+            System.out.println("잘못된 입력입니다.");
+        }
+    }
 }
