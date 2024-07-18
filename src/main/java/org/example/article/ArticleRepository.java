@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 // ArticleDao - Data Access Object
+// DB와 직접적으로 소통하는 역할
 public class ArticleRepository {
     // 데이터베이스와의 연결
     private final Connection connection;
