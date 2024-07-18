@@ -4,10 +4,8 @@ import java.util.Scanner;
 
 public class ArticleMain {
     public static void main(String[] args) {
-        // 테스트 단계
         Scanner scanner = new Scanner(System.in);
         ArticleService service = new ArticleService(scanner);
-//        service.createArticle();
         // 사용자한테 어떤 기능을 사용할지를 반복해서 물어본다.
         while (true) {
             System.out.println("기능을 선택하세요");
@@ -18,12 +16,10 @@ public class ArticleMain {
             if (input.equals("q")) break;
             switch (Integer.parseInt(input)) {
                 case 1 -> service.createArticle();
+                case 2 -> service.readAllArticles();
             }
+            System.out.println();
         }
-
-        ArticleRepository repo = new ArticleRepository();
-        for (Article article : repo.readAll()) {
-            System.out.println(article);
-        }
+        System.out.println("Bye!!!");
     }
 }

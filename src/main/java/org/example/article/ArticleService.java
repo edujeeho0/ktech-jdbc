@@ -26,5 +26,17 @@ public class ArticleService {
         ));
     }
 
-    // 2. 조회된 데이터를 표시하기
+    // 2. 전체 Article 데이터를 표시하기
+    public void readAllArticles() {
+        for(Article article: repository.readAll()) {
+            System.out.println(String.format(
+                    "%d. %s",
+                    article.getId(),
+                    article.getTitle()
+            ));
+        }
+    }
+
+    // 3. 하나의 Article 데이터 표시하기
+    // 4. Article 삭제하기
 }
