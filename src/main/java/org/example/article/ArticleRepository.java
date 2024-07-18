@@ -3,6 +3,7 @@ package org.example.article;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 // ArticleDao - Data Access Object
 // DB와 직접적으로 소통하는 역할
@@ -61,5 +62,21 @@ public class ArticleRepository {
     }
 
     // 3. Article 개별 조회
+    public Optional<Article> readOne(Long id) {
+        String selectSql = "SELECT * FROM article WHERE id = ?;";
+        try (PreparedStatement statement = connection.prepareStatement(selectSql)) {
+            statement.setLong(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (!resultSet.next()) return Optional.empty();
+            return Optional.of(new Article(
+                    resultSet.getLong("id"),
+                    resultSet.getString("title"),
+                    resultSet.getString("content")
+            ));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     // 4. Article 삭제
 }

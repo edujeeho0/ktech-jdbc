@@ -1,5 +1,6 @@
 package org.example.article;
 
+import java.util.Optional;
 import java.util.Scanner;
 
 // Service - 본질적인 기능(비즈니스 로직)
@@ -38,5 +39,24 @@ public class ArticleService {
     }
 
     // 3. 하나의 Article 데이터 표시하기
+    public void readArticle() {
+        System.out.print("게시물 번호를 입력하세요: ");
+        String input = scanner.nextLine();
+        try {
+            Long id = Long.parseLong(input);
+            Optional<Article> optionalArticle = repository.readOne(id);
+            if (optionalArticle.isEmpty()) {
+                System.out.println("게시물을 찾을 수 없습니다.");
+            }
+            else {
+                Article article = optionalArticle.get();
+                System.out.println(article.getTitle());
+                System.out.println();
+                System.out.println(article.getContent());
+            }
+        } catch (NumberFormatException ignored) {
+            System.out.println("잘못된 입력입니다.");
+        }
+    }
     // 4. Article 삭제하기
 }
